@@ -14,14 +14,14 @@ const getCalls = {
     },
 
     getRestaurants: function (food) {
-          fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&start=first&sort=rating&q=${food}`, {
+          fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&start=first&sort=rating&q=${food}&count=4`, {
                 headers: {
                     "Accept": "application/json",
                     "user-key": "40ff6ce3387cdd36624832d171f31967"
                 }
             })
             .then(r => r.json())
-            .then(results => console.log(results))
+            .then(results => console.log(results.restaurants))
     },
 
     getConcerts: function (genre) {
