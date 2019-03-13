@@ -1,4 +1,3 @@
-
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
@@ -101,13 +100,13 @@ const createFormContainer = () => {
     buttonEl.textContent = "Search";
     selectEl.appendChild(buttonEl);
 
-    // this will build the resturants section 
+    // this will build the resturants section
     formEl.appendChild(buildFormElements("resturants-input", "resturantsButton"));
 
-    // this will build the meetup section 
+    // this will build the meetup section
     formEl.appendChild(buildFormElements("meetups-input", "meetupsButton"));
 
-    // this will build the concerts section 
+    // this will build the concerts section
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton"));
 
 
