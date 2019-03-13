@@ -1,3 +1,5 @@
+
+// buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
 // Appending h1 to mainContainer
@@ -24,6 +26,17 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
+const buildResultList = () => {
+
+    const sectionEl = document.createElement('section');
+    const list = document.createElement('ol');
+    let resultElement = document.createElement('li');
+    let saveButton = document.createElement('button');
+    resultElement.appendChild(saveButton);
+    list.appendChild(resultElement);
+    sectionEl.appendChild(list);
+    resultsContainer.appendChild(sectionEl);
+}
 
 const createFormContainer = () => {
     // this component pretty much builds the form section dynamically
@@ -31,15 +44,15 @@ const createFormContainer = () => {
     const buildFormElements = (elemInputID, elemBtnId) => {
         const sectionEl = document.createElement("section");
         formEl.appendChild(sectionEl); // this will append to the form section
-    
+
         const labelEl = document.createElement("label");
         sectionEl.appendChild(labelEl);
-    
+
         const inputEl = document.createElement("input");
         inputEl.id = elemInputID;
         inputEl.type = "text";
         sectionEl.appendChild(inputEl);
-    
+
         const buttonEl = document.createElement("button");
         buttonEl.id = elemBtnId;
         buttonEl.textContent = "Search";
@@ -47,7 +60,7 @@ const createFormContainer = () => {
 
         return sectionEl
     }
-    
+
     // ========================== refactor this later ===========================
     const formEl = document.createElement("form");
     formEl.id = "form";
@@ -97,12 +110,14 @@ const createFormContainer = () => {
     // this will build the concerts section 
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton"));
 
-    
+
     return formEl;
 }
 
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
+
+buildResultList();
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
