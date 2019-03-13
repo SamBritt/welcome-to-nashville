@@ -27,8 +27,8 @@ const getCalls = {
     },
 
     getConcerts: function (genre) {
-        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&city=Nashville&countryCode=US&classificationName=${genre}`)
+        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&size=4&city=Nashville&countryCode=US&classificationName=${genre}`)
             .then(response => response.json())
-            .then(parsedResponse => console.log(parsedResponse))
+            .then(parsedResponse => console.log(parsedResponse._embedded.events))
     }
 };
