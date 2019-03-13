@@ -1,2 +1,2 @@
 getCalls.getParks()
-getCalls.getRestaurants()
+getCalls.getRestaurants("Burger")
