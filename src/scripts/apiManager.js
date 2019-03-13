@@ -7,10 +7,15 @@ const getCalls = {
         }).then(response => response.json())
     },
 
-    getParks: function () {
-        fetch("https://data.nashville.gov/resource/xbru-cfzi.json")
+    getParks: function (feature) {
+        fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?${feature}=Yes&$limit=4`)
             .then(response => response.json())
-            .then(parsedResponse => console.log(parsedResponse))
+            .then(parsedResponse => {
+                console.log(parsedResponse.park_name)
+                parsedResponse.forEach(park => {
+                    console.log(park.park_name, park.mapped_location_address)
+                });
+            })
     },
 
     getRestaurants: function (food) {
