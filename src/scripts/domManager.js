@@ -1,4 +1,3 @@
-
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
@@ -26,17 +25,36 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
-const buildResultList = () => {
+let buildMeetupsArray = () => {
+    let allList = getCalls.getMeetups();
+    let tempArr = [];
+    for(let i = 0; i < 4; i++){
+        allList.then(response => {
+            tempArr.push(response.events[i].name["text"])});
+    }
+    console.log(tempArr)
+}
+
+const buildResultList = (array1) => {
 
     const sectionEl = document.createElement('section');
     const list = document.createElement('ol');
-    let resultElement = document.createElement('li');
+    
     let saveButton = document.createElement('button');
-    resultElement.appendChild(saveButton);
+    let resultElement = document.createElement('li');
+    // for(let i in array1){
+    //     let resultElement = document.createElement('li');
+    //     resultElement = i;
+    //     list.appendChild(resultElement);
+    // }
     list.appendChild(resultElement);
     sectionEl.appendChild(list);
     resultsContainer.appendChild(sectionEl);
+   
+    
 }
+
+
 
 const createFormContainer = () => {
     // this component pretty much builds the form section dynamically
@@ -113,7 +131,6 @@ const createFormContainer = () => {
 
     // this will build the concerts section 
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
-
 
     return formEl;
 }
