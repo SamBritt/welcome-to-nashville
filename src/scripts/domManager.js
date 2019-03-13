@@ -1,4 +1,3 @@
-
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
@@ -113,7 +112,6 @@ const createFormContainer = () => {
 
     // this will build the concerts section 
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
-
 
     return formEl;
 }
