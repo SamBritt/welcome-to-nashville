@@ -41,27 +41,29 @@ const buildResultList = () => {
 const createFormContainer = () => {
     // this component pretty much builds the form section dynamically
 
-    const buildFormElements = (elemInputID, elemBtnId) => {
+    const buildFormElements = (elemInputID, elemBtnId, elemPlaceholder, elemLabel) => {
         const sectionEl = document.createElement("section");
         formEl.appendChild(sectionEl); // this will append to the form section
 
         const labelEl = document.createElement("label");
+        labelEl.textContent = elemLabel;
         sectionEl.appendChild(labelEl);
 
         const inputEl = document.createElement("input");
         inputEl.id = elemInputID;
+        inputEl.placeholder = elemPlaceholder;
         inputEl.type = "text";
         sectionEl.appendChild(inputEl);
 
         const buttonEl = document.createElement("button");
         buttonEl.id = elemBtnId;
         buttonEl.textContent = "Search";
-        inputEl.appendChild(buttonEl);
+        sectionEl.appendChild(buttonEl);
 
         return sectionEl
     }
 
-    // ========================== refactor this later ===========================
+    // ========================== Drop Box Area ===========================
     const formEl = document.createElement("form");
     formEl.id = "form";
 
@@ -70,11 +72,13 @@ const createFormContainer = () => {
     formEl.appendChild(sectionEl); // this will append to the form section
 
     const labelEl = document.createElement("label");
+    labelEl.textContent = "Parks ";
     sectionEl.appendChild(labelEl);
 
     const selectEl = document.createElement("select");
     sectionEl.appendChild(selectEl);
 
+    // ========================== refactor this later ===========================
     // ====================== options ===================
     const option1 = document.createElement("option");
     option1.textContent = "Dog Parks";
@@ -99,16 +103,16 @@ const createFormContainer = () => {
     const buttonEl = document.createElement("button");
     buttonEl.id = "parksButton";
     buttonEl.textContent = "Search";
-    selectEl.appendChild(buttonEl);
+    sectionEl.appendChild(buttonEl);
 
     // this will build the resturants section 
-    formEl.appendChild(buildFormElements("resturants-input", "resturantsButton"));
+    formEl.appendChild(buildFormElements("resturants-input", "resturantsButton", "resturants by food types", "Resturants "));
 
     // this will build the meetup section 
-    formEl.appendChild(buildFormElements("meetups-input", "meetupsButton"));
+    formEl.appendChild(buildFormElements("meetups-input", "meetupsButton", "meetups by topics", "Meetups "));
 
     // this will build the concerts section 
-    formEl.appendChild(buildFormElements("concerts-input", "concertsButton"));
+    formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
 
 
     return formEl;
