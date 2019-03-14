@@ -17,3 +17,7 @@ const handleAddParksResultsToDom = () => {
     userSelection = selection.options[selection.selectedIndex].value
     getCalls.getParks(userSelection).then(parsedResponse => appendParksResultsToDom(parsedResponse))
 }
+
+const handleAddMeetupsResultsToDom = () => {
+    getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
+}
