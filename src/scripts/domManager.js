@@ -37,6 +37,25 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 // }
 
 // const buildResultList = (obj) => {
+// const buildResultList = (array1) => {
+
+//     const sectionEl = document.createElement('section');
+//     const list = document.createElement('ol');
+
+//     let saveButton = document.createElement('button');
+//     let resultElement = document.createElement('li');
+//     // for(let i in array1){
+//     //     let resultElement = document.createElement('li');
+//     //     resultElement = i;
+//     //     list.appendChild(resultElement);
+//     // }
+//     list.appendChild(resultElement);
+//     sectionEl.appendChild(list);
+//     resultsContainer.appendChild(sectionEl);
+
+
+// }
+// const buildResultList = (obj) => {
 
 
 //     const sectionEl = document.createElement('section');
@@ -95,7 +114,7 @@ const createFormContainer = () => {
 
     // ========================== Drop Box Area ===========================
     const formEl = document.createElement("fieldset");
-    formEl.id = "form";
+    formEl.id = "feildset";
 
     // this will build the parks section
     const sectionEl = document.createElement("section");
@@ -106,6 +125,7 @@ const createFormContainer = () => {
     sectionEl.appendChild(labelEl);
 
     const selectEl = document.createElement("select");
+    selectEl.id = "selections"
     sectionEl.appendChild(selectEl);
 
     // ========================== refactor this later ===========================
@@ -113,21 +133,25 @@ const createFormContainer = () => {
     const option1 = document.createElement("option");
     option1.textContent = "Dog Parks";
     option1.value = "dog_park";
+    option1.id = "dog_park"
     selectEl.appendChild(option1);
 
     const option2 = document.createElement("option");
     option2.textContent = "Playground";
     option2.value = "playground";
+    option2.id = "playground"
     selectEl.appendChild(option2);
 
     const option3 = document.createElement("option");
     option3.textContent = "Hiking Trails";
     option3.value = "hiking_trails"
+    option3.id = "hiking_trails"
     selectEl.appendChild(option3);
 
     const option4 = document.createElement("option");
     option4.textContent = "Soccer Fields";
     option4.value = "soccer_fields"
+    option4.id = "soccer_fields"
     selectEl.appendChild(option4);
 
     const buttonEl = document.createElement("button");
@@ -144,13 +168,70 @@ const createFormContainer = () => {
     // this will build the concerts section 
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
 
+
     return formEl;
 }
 
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
-// buildResultList();
+const concertSearchButton = document.querySelector("#concertsButton");
+concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
+
+
+
+const buildElementWithText = (elementType, elementTextContent) => {
+    let htmlElement = document.createElement(elementType);
+    htmlElement.textContent = elementTextContent;
+    return htmlElement;
+};
+const list = document.createElement('ol');
+
+const buildHTMLforConcertResults = (resultObject) => {
+    
+    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
+     
+    
+    return list;
+}
+
+
+const appendConcertResultsToDom = (resultArray) => {
+    let resultsFragment = document.createDocumentFragment();
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+        }
+    resultArray.forEach(item => {
+        resultsFragment.appendChild(buildHTMLforConcertResults(item));
+    })
+    resultsContainer.appendChild(resultsFragment);
+}
+
+
+
+const buildHTMLforParksResults = (resultObject) => {
+    list.appendChild(buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address))
+    return list;
+}
+
+const appendParksResultsToDom = (resultArray) => {
+    let resultsFragment = document.createDocumentFragment();
+    while(list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    resultArray.forEach(item => {
+        resultsFragment.appendChild(buildHTMLforParksResults(item));
+    })
+
+    resultsContainer.appendChild(resultsFragment);
+
+}
+
+const parksSearchButton = document.querySelector("#parksButton");
+parksSearchButton.addEventListener("click", handleAddParksResultsToDom);
+
+
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
@@ -177,18 +258,9 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
 
 }
 
-const concertSearchButton = document.querySelector("#concertsButton");
-concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
-
 const restaurantSearchButton = document.querySelector("#restaurantsButton");
 restaurantSearchButton.addEventListener("click", handleAddRestaurantResultsToDom);
 
-const buildElementWithText = (elementType, elementTextContent) => {
-    let htmlElement = document.createElement(elementType);
-    htmlElement.textContent = elementTextContent;
-    return htmlElement;
-};
-const list = document.createElement('ol');
 
 const buildHTMLforRestaurantResults = (resultObject) => {
     
