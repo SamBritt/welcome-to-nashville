@@ -24,32 +24,10 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
-
-let buildMeetupsArray = (search) => {
-
-    //fetch results from getMeetups, then
-    //for each item in that fetch call, create a shortened array,
-    //map through that array, for each element in that array,
-    //create an object, set the values to be name and time, return that result,
-    //then pass the result into the buildResultList function.
-    getCalls.getMeetups(search).then(response => {
-        let condensedArr = response.events.slice(0, 5);
-        let tempArr = condensedArr.map(e => {
-            let tempObj = {};
-            tempObj.name = e.name.text;
-            tempObj.date = e.start.local;
-            return tempObj;
-        })
-        console.log(tempArr);
-        buildResultList(tempArr);
-    })
-}
-buildMeetupsArray('comedy');
+const list = document.createElement('ol');
 
 const buildResultList = (arr) => {
-
-    const sectionEl = document.createElement('section');
-    const list = document.createElement('ol');
+                
     let saveButton = document.createElement('button');
     //for each item in an array, for each element of that item (an object in this case),
     //create an 'li' element &
@@ -63,11 +41,31 @@ const buildResultList = (arr) => {
         }
     })
 
-    sectionEl.appendChild(list);
-    resultsContainer.appendChild(sectionEl);
-    console.log(sectionEl);
+    resultsContainer.appendChild(list);
 }
 
+let buildMeetupsArray = (search) => {
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+    }
+    //fetch results from getMeetups, then
+    //for each item in that fetch call, create a shortened array,
+    //map through that array, for each element in that array,
+    //create an object, set the values to be name and time, return that result,
+    //then pass the result into the buildResultList function.
+    getCalls.getMeetups(search).then(response => {
+        
+        let condensedArr = response.events.slice(0, 4);
+        let tempArr = condensedArr.map(e => {
+            let tempObj = {};
+            tempObj.name = e.name.text;
+            tempObj.date = e.start.local;
+            return tempObj;
+        })
+        console.log(tempArr);
+        buildResultList(tempArr);
+    })
+}
 
 
 const createFormContainer = () => {
@@ -161,6 +159,9 @@ console.log(createFormContainer());
 const concertSearchButton = document.querySelector("#concertsButton");
 concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
 
+const meetupsSearchButton = document.querySelector("#meetupsButton");
+meetupsSearchButton.addEventListener("click", handleAddMeetupsResultsToDom);
+
 
 
 const buildElementWithText = (elementType, elementTextContent) => {
@@ -168,7 +169,7 @@ const buildElementWithText = (elementType, elementTextContent) => {
     htmlElement.textContent = elementTextContent;
     return htmlElement;
 };
-const list = document.createElement('ol');
+
 
 const buildHTMLforConcertResults = (resultObject) => {
 
