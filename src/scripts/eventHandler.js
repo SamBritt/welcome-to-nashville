@@ -8,7 +8,6 @@ const handleAddConcertResultsToDom = () => {
     //document.querySelector(“#form”).reset();
  }
 
- 
     //document.querySelector("#form").reset();
 // }
 
@@ -23,6 +22,8 @@ const handleSaveButton = () => {
 
 
     
+}
 
-
+const handleAddMeetupsResultsToDom = () => {
+    getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
 }

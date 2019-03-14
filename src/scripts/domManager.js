@@ -24,32 +24,10 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
-
-let buildMeetupsArray = (search) => {
-
-    //fetch results from getMeetups, then
-    //for each item in that fetch call, create a shortened array,
-    //map through that array, for each element in that array,
-    //create an object, set the values to be name and time, return that result,
-    //then pass the result into the buildResultList function.
-    getCalls.getMeetups(search).then(response => {
-        let condensedArr = response.events.slice(0, 5);
-        let tempArr = condensedArr.map(e => {
-            let tempObj = {};
-            tempObj.name = e.name.text;
-            tempObj.date = e.start.local;
-            return tempObj;
-        })
-        console.log(tempArr);
-        buildResultList(tempArr);
-    })
-}
-buildMeetupsArray('comedy');
+const list = document.createElement('ol');
 
 const buildResultList = (arr) => {
-
-    const sectionEl = document.createElement('section');
-    const list = document.createElement('ol');
+                
     let saveButton = document.createElement('button');
     //for each item in an array, for each element of that item (an object in this case),
     //create an 'li' element &
@@ -63,11 +41,31 @@ const buildResultList = (arr) => {
         }
     })
 
-    sectionEl.appendChild(list);
-    resultsContainer.appendChild(sectionEl);
-    console.log(sectionEl);
+    resultsContainer.appendChild(list);
 }
 
+let buildMeetupsArray = (search) => {
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+    }
+    //fetch results from getMeetups, then
+    //for each item in that fetch call, create a shortened array,
+    //map through that array, for each element in that array,
+    //create an object, set the values to be name and time, return that result,
+    //then pass the result into the buildResultList function.
+    getCalls.getMeetups(search).then(response => {
+        
+        let condensedArr = response.events.slice(0, 4);
+        let tempArr = condensedArr.map(e => {
+            let tempObj = {};
+            tempObj.name = e.name.text;
+            tempObj.date = e.start.local;
+            return tempObj;
+        })
+        console.log(tempArr);
+        buildResultList(tempArr);
+    })
+}
 
 
 const createFormContainer = () => {
@@ -142,13 +140,13 @@ const createFormContainer = () => {
     buttonEl.textContent = "Search";
     sectionEl.appendChild(buttonEl);
 
-    // this will build the resturants section 
+    // this will build the resturants section
     formEl.appendChild(buildFormElements("restaurants-input", "restaurantsButton", "restaurants by food types", "Resturants "));
 
-    // this will build the meetup section 
+    // this will build the meetup section
     formEl.appendChild(buildFormElements("meetups-input", "meetupsButton", "meetups by topics", "Meetups "));
 
-    // this will build the concerts section 
+    // this will build the concerts section
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
 
 
@@ -160,6 +158,9 @@ console.log(createFormContainer());
 
 const concertSearchButton = document.querySelector("#concertsButton");
 concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
+
+const meetupsSearchButton = document.querySelector("#meetupsButton");
+meetupsSearchButton.addEventListener("click", handleAddMeetupsResultsToDom);
 
 
 
@@ -222,7 +223,7 @@ parksSearchButton.addEventListener("click", handleAddParksResultsToDom);
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
 const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) => {
-    //Create 4 <p> elements that are meant to display the saved items gathered from the results section. The parameters are meant to specify which items will go into which element. Each of these elements are appended to the document fragment itineraryFragment. Then the fragment is appended to itinerary container. 
+    //Create 4 <p> elements that are meant to display the saved items gathered from the results section. The parameters are meant to specify which items will go into which element. Each of these elements are appended to the document fragment itineraryFragment. Then the fragment is appended to itinerary container.
     const itineraryFragment = document.createDocumentFragment();
     const parkToAdd = document.createElement("p");
     parkToAdd.textContent = `Park: ${parkSaved}`;
