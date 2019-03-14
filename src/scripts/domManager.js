@@ -27,16 +27,22 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 
 
 const buildResultList = (arr) => {
-    let saveButton = document.createElement('button');
+                
+    
     //for each item in an array, for each element of that item (an object in this case),
     //create an 'li' element &
     //set the text content to be the value of that objects key, then
     //append it to the list
     arr.forEach(element => {
         let resultElement = document.createElement('li');
+        let saveButton = document.createElement('button');
         for (let item in element) {
             resultElement.textContent += `${element[item]} `;
+            saveButton.className = 'meetups';
+            saveButton.textContent = 'Save';
+            resultElement.appendChild(saveButton);
             list.appendChild(resultElement);
+
         }
     })
 
