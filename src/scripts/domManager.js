@@ -28,31 +28,32 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 let buildMeetupsArray = () => {
     let allList = getCalls.getMeetups();
     let tempArr = [];
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
         allList.then(response => {
-            tempArr.push(response.events[i].name["text"])});
+            tempArr.push(response.events[i].name["text"])
+        });
     }
     console.log(tempArr)
 }
 
-const buildResultList = (array1) => {
+// const buildResultList = (array1) => {
 
-    const sectionEl = document.createElement('section');
-    const list = document.createElement('ol');
-    
-    let saveButton = document.createElement('button');
-    let resultElement = document.createElement('li');
-    // for(let i in array1){
-    //     let resultElement = document.createElement('li');
-    //     resultElement = i;
-    //     list.appendChild(resultElement);
-    // }
-    list.appendChild(resultElement);
-    sectionEl.appendChild(list);
-    resultsContainer.appendChild(sectionEl);
-   
-    
-}
+//     const sectionEl = document.createElement('section');
+//     const list = document.createElement('ol');
+
+//     let saveButton = document.createElement('button');
+//     let resultElement = document.createElement('li');
+//     // for(let i in array1){
+//     //     let resultElement = document.createElement('li');
+//     //     resultElement = i;
+//     //     list.appendChild(resultElement);
+//     // }
+//     list.appendChild(resultElement);
+//     sectionEl.appendChild(list);
+//     resultsContainer.appendChild(sectionEl);
+
+
+// }
 
 
 
@@ -132,13 +133,45 @@ const createFormContainer = () => {
     // this will build the concerts section 
     formEl.appendChild(buildFormElements("concerts-input", "concertsButton", "concerts by genre", "Concerts "));
 
+
     return formEl;
 }
 
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
-buildResultList();
+const concertSearchButton = document.querySelector("#concertsButton");
+concertSearchButton.addEventListener("click", handleAddResultsToDom);
+concertSearchButton.setAttribute("type", "button");
+
+const buildElementWithText = (elementType, elementTextContent) => {
+    let htmlElement = document.createElement(elementType);
+    htmlElement.textContent = elementTextContent;
+    return htmlElement;
+};
+const list = document.createElement('ol');
+
+const buildHTMLforResults = (resultObject) => {
+    
+    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
+    
+    return list;
+}
+
+const appendResultsToDom = (resultArray) => {
+    let resultsFragment = document.createDocumentFragment();
+    resultArray.forEach(item => {
+        resultsFragment.appendChild(buildHTMLforResults(item));
+    })
+
+    while(resultsContainer.firstChild) {
+        resultsContainer.removeChild(resultsContainer.firstChild);
+    }
+
+    resultsContainer.appendChild(resultsFragment);
+}
+
+
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 

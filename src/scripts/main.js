@@ -1,2 +1,2 @@
-getCalls.getParks()
-getCalls.getRestaurants("Burger")
+// getCalls.getParks()
+// getCalls.getRestaurants("Burger")
