@@ -1,14 +1,13 @@
 const handleAddConcertResultsToDom = () => {
     getCalls.getConcerts(document.querySelector("#concerts-input").value).then(parsedResponse => appendConcertResultsToDom(parsedResponse))
     //document.querySelector(“#form”).reset();
- }
+}
 
- const handleAddRestaurantResultsToDom = () => {
+const handleAddRestaurantResultsToDom = () => {
     getCalls.getRestaurants(document.querySelector("#restaurants-input").value).then(parsedResponse => appendRestaurantResultsToDom(parsedResponse))
     //document.querySelector(“#form”).reset();
- }
-
-    //document.querySelector("#form").reset();
+}
+//document.querySelector("#form").reset();
 // }
 
 const handleAddParksResultsToDom = () => {
@@ -20,15 +19,13 @@ const handleAddParksResultsToDom = () => {
 const handleAddMeetupsResultsToDom = () => {
     getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
 }
-
+let itineraryObject = {
+    park: "",
+    restaurant: "",
+    meetup: "",
+    concert: ""
+}
 const handleSaveButton = () => {
-    
-    let itineraryObject = {
-        park: "",
-        restaurant: "",
-        meetup: "",
-        concert: ""
-    }
 
     switch (true) {
         case (event.target.parentNode.classList.contains("parks")):
