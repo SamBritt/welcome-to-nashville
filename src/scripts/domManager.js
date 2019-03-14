@@ -28,30 +28,42 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 let buildMeetupsArray = () => {
     let allList = getCalls.getMeetups();
     let tempArr = [];
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
         allList.then(response => {
-            tempArr.push(response.events[i].name["text"])});
+            tempArr.push(response.events[i].name["text"])
+        });
     }
     console.log(tempArr)
 }
 
-const buildResultList = (array1) => {
+const buildResultList = (obj) => {
+
 
     const sectionEl = document.createElement('section');
     const list = document.createElement('ol');
-    
+
     let saveButton = document.createElement('button');
-    let resultElement = document.createElement('li');
+    // let resultElement = document.createElement('li');
     // for(let i in array1){
     //     let resultElement = document.createElement('li');
     //     resultElement = i;
     //     list.appendChild(resultElement);
     // }
-    list.appendChild(resultElement);
+    
+    obj.forEach(e => {
+        let resultElement = document.createElement('li');
+        for(let x in e){
+            
+            resultElement.textContent += `${e[x]} `;
+            list.appendChild(resultElement);
+        }
+    })
+    
+
+    // list.appendChild(resultElement);
     sectionEl.appendChild(list);
     resultsContainer.appendChild(sectionEl);
-   
-    
+    console.log(sectionEl);
 }
 
 
@@ -164,3 +176,5 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
     itineraryContainer.appendChild(itineraryFragment);
 
 }
+
+
