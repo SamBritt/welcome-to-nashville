@@ -174,12 +174,8 @@ list.id = "results";
 let i = 1;
 const buildHTMLforConcertResults = (resultObject) => {
 
-<<<<<<< HEAD
-    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
-=======
     list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate, `resultItem-${i}`));
     i++;
->>>>>>> 2bfaba1e06bf0e2e8ad134b2e5bfec17ff071a39
 
     return list;
 }
