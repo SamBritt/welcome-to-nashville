@@ -24,7 +24,7 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
-const list = document.createElement('ol');
+
 
 const buildResultList = (arr) => {
                 
