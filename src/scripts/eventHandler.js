@@ -41,6 +41,10 @@ const handleSaveButton = () => {
             itineraryObject.concert = event.target.parentNode.textContent;
             break;
     }
+    while (itineraryDiv.firstChild) {
+        itineraryDiv.removeChild(itineraryDiv.firstChild);
+    }
+    putItinerary(itineraryObject);
+    
 
-    console.log(itineraryObject);
 }

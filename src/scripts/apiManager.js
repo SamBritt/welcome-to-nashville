@@ -45,7 +45,7 @@ const getItinerary = () => {
 
 // put new itinerary information into database.json and return 
 const putItinerary = (newObject) => {
-    return fetch("http://localhost:8088/itinerary/1", {
+    fetch("http://localhost:8088/itinerary/1", {
       method: "PUT",
       body: JSON.stringify(newObject),
       headers: {
@@ -53,5 +53,5 @@ const putItinerary = (newObject) => {
       }
     })
     .then(response => response.json())
-    .then(getItinerary())
-  } 
+    .then(()=> getItinerary())
+   } 

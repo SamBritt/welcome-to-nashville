@@ -1,10 +1,11 @@
 {
-    "itinerary":[
-        {
-          "id": 1,
-          "park": "",
-          "restaurant": "",
-          "meetup": "",
-          "concert": ""
-        }]
-  } 
+  "itinerary": [
+    {
+      "park": "Edwin Warner Park: 50 Vaughn RdSave",
+      "restaurant": "Rotier's Restaurant || 2413 Elliston Place, Nashville 37203Save",
+      "meetup": "Intro to 3D CAD for 3D Printing Save2019-03-19T18:30:00 Save",
+      "concert": "Loretta Lynn: All-Star Birthday Concert : 2019-04-01Save",
+      "id": 1
+    }
+  ]
+}
