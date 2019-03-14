@@ -141,7 +141,7 @@ inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
 const concertSearchButton = document.querySelector("#concertsButton");
-concertSearchButton.addEventListener("click", handleAddResultsToDom);
+concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
 
 const buildElementWithText = (elementType, elementTextContent) => {
     let htmlElement = document.createElement(elementType);
@@ -158,7 +158,7 @@ const buildHTMLforConcertResults = (resultObject) => {
     return list;
 }
 
-const appendResultsToDom = (resultArray) => {
+const appendConcertResultsToDom = (resultArray) => {
     let resultsFragment = document.createDocumentFragment();
     resultArray.forEach(item => {
         resultsFragment.appendChild(buildHTMLforConcertResults(item));
