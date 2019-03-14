@@ -26,19 +26,19 @@ let itineraryObject = {
     concert: ""
 }
 const handleSaveButton = () => {
-
+  
     switch (true) {
         case (event.target.parentNode.classList.contains("parks")):
-            itineraryObject.park = event.target.parentNode.textContent;
+            itineraryObject.park = event.target.parentNode.firstChild.textContent;
             break;
         case (event.target.parentNode.classList.contains("restaurants")):
-            itineraryObject.restaurant = event.target.parentNode.textContent;
+            itineraryObject.restaurant = event.target.parentNode.firstChild.textContent;
             break;
         case (event.target.classList.contains("meetups")):
-            itineraryObject.meetup = event.target.parentNode.textContent;
+            itineraryObject.meetup = event.target.parentNode.firstChild.textContent;
             break;
         case (event.target.parentNode.classList.contains("concerts")):
-            itineraryObject.concert = event.target.parentNode.textContent;
+            itineraryObject.concert = event.target.parentNode.firstChild.textContent;
             break;
     }
 
