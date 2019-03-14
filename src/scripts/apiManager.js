@@ -19,14 +19,18 @@ const getCalls = {
     },
 
     getRestaurants: function (food) {
-          fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&start=first&sort=rating&q=${food}&count=4`, {
+          return fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&start=first&sort=rating&q=${food}&count=4`, {
                 headers: {
                     "Accept": "application/json",
                     "user-key": "40ff6ce3387cdd36624832d171f31967"
                 }
             })
             .then(r => r.json())
-            .then(results => console.log(results.restaurants))
+            .then(results => results.restaurants
+                // .forEach(item => {
+                // console.log(item.restaurant.name, ":", item.restaurant.location.address) 
+            // })
+            )
     },
 
     getConcerts: function (genre) {

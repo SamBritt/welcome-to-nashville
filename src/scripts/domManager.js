@@ -25,24 +25,24 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
-let buildMeetupsArray = () => {
-    let allList = getCalls.getMeetups();
-    let tempArr = [];
-    for (let i = 0; i < 4; i++) {
-        allList.then(response => {
-            tempArr.push(response.events[i].name["text"])
-        });
-    }
-    console.log(tempArr)
-}
+// let buildMeetupsArray = () => {
+//     let allList = getCalls.getMeetups();
+//     let tempArr = [];
+//     for (let i = 0; i < 4; i++) {
+//         allList.then(response => {
+//             tempArr.push(response.events[i].name["text"])
+//         });
+//     }
+//     console.log(tempArr)
+// }
 
-const buildResultList = (obj) => {
+// const buildResultList = (obj) => {
 
 
-    const sectionEl = document.createElement('section');
-    const list = document.createElement('ol');
+//     const sectionEl = document.createElement('section');
+//     const list = document.createElement('ol');
 
-    let saveButton = document.createElement('button');
+//     let saveButton = document.createElement('button');
     // let resultElement = document.createElement('li');
     // for(let i in array1){
     //     let resultElement = document.createElement('li');
@@ -50,21 +50,21 @@ const buildResultList = (obj) => {
     //     list.appendChild(resultElement);
     // }
     
-    obj.forEach(e => {
-        let resultElement = document.createElement('li');
-        for(let x in e){
+    // obj.forEach(e => {
+    //     let resultElement = document.createElement('li');
+    //     for(let x in e){
             
-            resultElement.textContent += `${e[x]} `;
-            list.appendChild(resultElement);
-        }
-    })
+    //         resultElement.textContent += `${e[x]} `;
+    //         list.appendChild(resultElement);
+    //     }
+    // })
     
 
-    // list.appendChild(resultElement);
-    sectionEl.appendChild(list);
-    resultsContainer.appendChild(sectionEl);
-    console.log(sectionEl);
-}
+    // // list.appendChild(resultElement);
+    // sectionEl.appendChild(list);
+    // resultsContainer.appendChild(sectionEl);
+    // console.log(sectionEl);
+// }
 
 
 
@@ -94,7 +94,7 @@ const createFormContainer = () => {
     }
 
     // ========================== Drop Box Area ===========================
-    const formEl = document.createElement("form");
+    const formEl = document.createElement("fieldset");
     formEl.id = "form";
 
     // this will build the parks section
@@ -136,7 +136,7 @@ const createFormContainer = () => {
     sectionEl.appendChild(buttonEl);
 
     // this will build the resturants section 
-    formEl.appendChild(buildFormElements("resturants-input", "resturantsButton", "resturants by food types", "Resturants "));
+    formEl.appendChild(buildFormElements("restaurants-input", "restaurantsButton", "restaurants by food types", "Resturants "));
 
     // this will build the meetup section 
     formEl.appendChild(buildFormElements("meetups-input", "meetupsButton", "meetups by topics", "Meetups "));
@@ -150,7 +150,7 @@ const createFormContainer = () => {
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
-buildResultList();
+// buildResultList();
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
@@ -177,4 +177,35 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
 
 }
 
+const concertSearchButton = document.querySelector("#concertsButton");
+concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
 
+const restaurantSearchButton = document.querySelector("#restaurantsButton");
+restaurantSearchButton.addEventListener("click", handleAddRestaurantResultsToDom);
+
+const buildElementWithText = (elementType, elementTextContent) => {
+    let htmlElement = document.createElement(elementType);
+    htmlElement.textContent = elementTextContent;
+    return htmlElement;
+};
+const list = document.createElement('ol');
+
+const buildHTMLforRestaurantResults = (resultObject) => {
+    
+    list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address))
+     
+    return list;
+}
+
+// Function to append restaurant results to DOM which is attached to event handler
+const appendRestaurantResultsToDom = resultArray => {
+    let resultsFragment = document.createDocumentFragment();
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    resultArray.forEach(item => {
+        resultsFragment.appendChild(buildHTMLforRestaurantResults(item));
+    })
+    resultsContainer.appendChild(resultsFragment);
+}
