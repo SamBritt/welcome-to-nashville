@@ -1,6 +1,6 @@
 const getCalls = {
-    getMeetups: function () {
-        return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=nashville&location.address=nashville&token=AXUBYF6XR5MUANLU4KAI`, {
+    getMeetups: function (search) {
+       return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=${search}&location.address=nashville&token=AXUBYF6XR5MUANLU4KAI`, {
             "headers": {
                 "Accept": "application/json"
             }
