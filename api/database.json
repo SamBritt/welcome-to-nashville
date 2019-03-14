@@ -1,0 +1,10 @@
+{
+    "itinerary":
+        {
+          "id": 1,
+          "park": "Centennial Park",
+          "restaurant": "Prince’s Hot Chicken",
+          "meetup": "Meeple Mountain Board Game Night",
+          "concert": "John Mellencamp at the Ryman"
+        }
+  }

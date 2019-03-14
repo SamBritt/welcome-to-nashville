@@ -8,7 +8,6 @@ const handleAddConcertResultsToDom = () => {
     //document.querySelector(“#form”).reset();
  }
 
- 
     //document.querySelector("#form").reset();
 // }
 
