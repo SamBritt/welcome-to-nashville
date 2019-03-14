@@ -174,7 +174,6 @@ const buildHTMLforConcertResults = (resultObject) => {
 
     list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
 
-
     return list;
 }
 
@@ -208,7 +207,7 @@ const appendParksResultsToDom = (resultArray) => {
     })
 
     resultsContainer.appendChild(resultsFragment);
-
+    console.log(resultsContainer)
 }
 
 const parksSearchButton = document.querySelector("#parksButton");
