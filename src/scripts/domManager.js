@@ -25,42 +25,44 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
-let buildMeetupsArray = () => {
-    let allList = getCalls.getMeetups();
-    let tempArr = [];
-    for (let i = 0; i < 4; i++) {
-        allList.then(response => {
-            tempArr.push(response.events[i].name["text"])
-        });
-    }
-    console.log(tempArr)
+let buildMeetupsArray = (search) => {
+   
+    //fetch results from getMeetups, then
+    //for each item in that fetch call, create a shortened array,
+    //map through that array, for each element in that array,
+    //create an object, set the values to be name and time, return that result,
+    //then pass the result into the buildResultList function.
+    getCalls.getMeetups(search).then(response => {
+        let condensedArr = response.events.slice(0, 5);
+        let tempArr = condensedArr.map(e => {
+            let tempObj = {};
+            tempObj.name = e.name.text;
+            tempObj.date = e.start.local;
+            return tempObj;
+        })
+        console.log(tempArr);
+        buildResultList(tempArr);
+    })
 }
+buildMeetupsArray('comedy');
 
-const buildResultList = (obj) => {
-
+const buildResultList = (arr) => {
 
     const sectionEl = document.createElement('section');
     const list = document.createElement('ol');
-
     let saveButton = document.createElement('button');
-    // let resultElement = document.createElement('li');
-    // for(let i in array1){
-    //     let resultElement = document.createElement('li');
-    //     resultElement = i;
-    //     list.appendChild(resultElement);
-    // }
-    
-    obj.forEach(e => {
+    //for each item in an array, for each element of that item (an object in this case),
+    //create an 'li' element &
+    //set the text content to be the value of that objects key, then
+    //append it to the list
+    arr.forEach(element => {
         let resultElement = document.createElement('li');
-        for(let x in e){
-            
-            resultElement.textContent += `${e[x]} `;
+        for(let item in element){  
+            resultElement.textContent += `${element[item]} `;
             list.appendChild(resultElement);
         }
     })
-    
 
-    // list.appendChild(resultElement);
     sectionEl.appendChild(list);
     resultsContainer.appendChild(sectionEl);
     console.log(sectionEl);
@@ -150,7 +152,7 @@ const createFormContainer = () => {
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
-buildResultList();
+
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
