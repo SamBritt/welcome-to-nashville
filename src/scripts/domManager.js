@@ -25,16 +25,28 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
-let buildMeetupsArray = () => {
-    let allList = getCalls.getMeetups();
-    let tempArr = [];
-    for (let i = 0; i < 4; i++) {
-        allList.then(response => {
-            tempArr.push(response.events[i].name["text"])
-        });
-    }
-    console.log(tempArr)
+let buildMeetupsArray = (search) => {
+    // let allList = getCalls.getMeetups();
+    // let tempArr = [];
+    // for (let i = 0; i < 4; i++) {
+    //     allList.then(response => {
+    //         tempArr.push(response.events[i].name["text"])
+    //     });
+    // }
+    getCalls.getMeetups(search).then(response => {
+        let condensedArr = response.events.slice(0, 5);
+        let tempArr = condensedArr.map(e => {
+            let tempObj = {};
+            tempObj.name = e.name.text;
+            tempObj.date = e.start.local;
+            return tempObj;
+        })
+        console.log(tempArr);
+        buildResultList(tempArr);
+    })
+    // console.log(tempArr)
 }
+buildMeetupsArray('comedy');
 
 const buildResultList = (obj) => {
 
@@ -150,7 +162,7 @@ const createFormContainer = () => {
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
-buildResultList();
+
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
