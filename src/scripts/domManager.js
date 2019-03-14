@@ -28,16 +28,22 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 
 const buildResultList = (arr) => {
                 
-    let saveButton = document.createElement('button');
+    
     //for each item in an array, for each element of that item (an object in this case),
     //create an 'li' element &
     //set the text content to be the value of that objects key, then
     //append it to the list
     arr.forEach(element => {
         let resultElement = document.createElement('li');
+        let saveButton = document.createElement('button');
+        saveButton.addEventListener("click", handleSaveButton);
         for (let item in element) {
             resultElement.textContent += `${element[item]} `;
+            saveButton.className = 'meetups';
+            saveButton.textContent = 'Save';
+            resultElement.appendChild(saveButton);
             list.appendChild(resultElement);
+
         }
     })
 
@@ -54,7 +60,6 @@ let buildMeetupsArray = (search) => {
     //create an object, set the values to be name and time, return that result,
     //then pass the result into the buildResultList function.
     getCalls.getMeetups(search).then(response => {
-        
         let condensedArr = response.events.slice(0, 4);
         let tempArr = condensedArr.map(e => {
             let tempObj = {};
@@ -171,12 +176,22 @@ const buildElementWithText = (elementType, elementTextContent, id, classAdd) => 
     htmlElement.className = classAdd;
     return htmlElement;
 };
+
 const list = document.createElement('ol');
 list.id = "results";
 let i = 1;
-const buildHTMLforConcertResults = (resultObject) => {
 
-    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate, `resultItem-${i}`, "concerts"));
+
+const buildHTMLforConcertResults = (resultObject) => {
+    let liElement = buildElementWithText("li", resultObject.name + " : " + resultObject.dates.start.localDate, `resultItem-${i}`, "concerts");
+    list.appendChild(liElement)
+    const concertSaveButton = document.createElement("button");
+    concertSaveButton.classList.add = "concerts";
+    concertSaveButton.textContent = "Save";
+    liElement.appendChild(concertSaveButton)
+    concertSaveButton.addEventListener("click", handleSaveButton);
+    // liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "concerts"));
+    
     i++;
 
     return list;
@@ -195,10 +210,16 @@ const appendConcertResultsToDom = (resultArray) => {
 }
 
 
-
 const buildHTMLforParksResults = (resultObject) => {
-    list.appendChild(buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`, "parks"))
+    let liElement = buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`, "parks")
+    list.appendChild(liElement)
+    const parkSaveButton = document.createElement("button");
+    parkSaveButton.classList.add = "parks";
+    parkSaveButton.textContent = "Save";
+    liElement.appendChild(parkSaveButton)
+    parkSaveButton.addEventListener("click", handleSaveButton);
     i++;
+
     return list;
 }
 
@@ -213,7 +234,7 @@ const appendParksResultsToDom = (resultArray) => {
     })
 
     resultsContainer.appendChild(resultsFragment);
-
+    console.log(resultsContainer)
 }
 
 const parksSearchButton = document.querySelector("#parksButton");
@@ -251,10 +272,21 @@ restaurantSearchButton.addEventListener("click", handleAddRestaurantResultsToDom
 
 
 const buildHTMLforRestaurantResults = (resultObject) => {
-
-    list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`), "restaurants")
+    let liElement = buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`, "restaurants")
+    list.appendChild(liElement)
+    const restaurantSaveButton = document.createElement("button");
+    restaurantSaveButton.classList.add = "parks";
+    restaurantSaveButton.textContent = "Save";
+    liElement.appendChild(restaurantSaveButton)
+    restaurantSaveButton.addEventListener("click", handleSaveButton)
     i++;
+
+    // buildButtonsResults(liElement)
     return list;
+
+    // list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`, "restaurants"))
+    // i++;
+    // return list;
 }
 
 // Function to append restaurant results to DOM which is attached to event handler
