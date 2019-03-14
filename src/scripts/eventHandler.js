@@ -17,13 +17,33 @@ const handleAddParksResultsToDom = () => {
     getCalls.getParks(userSelection).then(parsedResponse => appendParksResultsToDom(parsedResponse))
 }
 
-const handleSaveButton = () => {
-    
-
-
-    
-}
-
 const handleAddMeetupsResultsToDom = () => {
     getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
+}
+
+const handleSaveButton = () => {
+    
+    let itineraryObject = {
+        park: "",
+        restaurant: "",
+        meetup: "",
+        concert: ""
+    }
+
+    switch (true) {
+        case (event.target.parentNode.classList.contains("parks")):
+            itineraryObject.park = event.target.parentNode.textContent;
+            break;
+        case (event.target.parentNode.classList.contains("restaurants")):
+            itineraryObject.restaurant = event.target.parentNode.textContent;
+            break;
+        case (event.target.classList.contains("meetups")):
+            itineraryObject.meetup = event.target.parentNode.textContent;
+            break;
+        case (event.target.parentNode.classList.contains("concerts")):
+            itineraryObject.concert = event.target.parentNode.textContent;
+            break;
+    }
+
+    console.log(itineraryObject);
 }

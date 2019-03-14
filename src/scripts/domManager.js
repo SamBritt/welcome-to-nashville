@@ -36,6 +36,7 @@ const buildResultList = (arr) => {
     arr.forEach(element => {
         let resultElement = document.createElement('li');
         let saveButton = document.createElement('button');
+        saveButton.addEventListener("click", handleSaveButton);
         for (let item in element) {
             resultElement.textContent += `${element[item]} `;
             saveButton.className = 'meetups';
