@@ -164,10 +164,11 @@ meetupsSearchButton.addEventListener("click", handleAddMeetupsResultsToDom);
 
 
 
-const buildElementWithText = (elementType, elementTextContent, id) => {
+const buildElementWithText = (elementType, elementTextContent, id, classAdd) => {
     let htmlElement = document.createElement(elementType);
     htmlElement.textContent = elementTextContent;
     htmlElement.id = id;
+    htmlElement.className = classAdd;
     return htmlElement;
 };
 const list = document.createElement('ol');
@@ -175,7 +176,7 @@ list.id = "results";
 let i = 1;
 const buildHTMLforConcertResults = (resultObject) => {
 
-    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate, `resultItem-${i}`));
+    list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate, `resultItem-${i}`, "concerts"));
     i++;
 
     return list;
@@ -196,7 +197,7 @@ const appendConcertResultsToDom = (resultArray) => {
 
 
 const buildHTMLforParksResults = (resultObject) => {
-    list.appendChild(buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`))
+    list.appendChild(buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`, "parks"))
     i++;
     return list;
 }
@@ -251,7 +252,7 @@ restaurantSearchButton.addEventListener("click", handleAddRestaurantResultsToDom
 
 const buildHTMLforRestaurantResults = (resultObject) => {
 
-    list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`))
+    list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`), "restaurants")
     i++;
     return list;
 }
