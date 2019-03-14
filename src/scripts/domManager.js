@@ -160,13 +160,12 @@ const buildHTMLforConcertResults = (resultObject) => {
 
 const appendConcertResultsToDom = (resultArray) => {
     let resultsFragment = document.createDocumentFragment();
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+        }
     resultArray.forEach(item => {
         resultsFragment.appendChild(buildHTMLforConcertResults(item));
     })
-
-    while(resultsContainer.firstChild) {
-        resultsContainer.removeChild(resultsContainer.firstChild);
-    }
 
     resultsContainer.appendChild(resultsFragment);
 }
