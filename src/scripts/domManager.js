@@ -124,6 +124,7 @@ const createFormContainer = () => {
     sectionEl.appendChild(labelEl);
 
     const selectEl = document.createElement("select");
+    selectEl.id = "selections"
     sectionEl.appendChild(selectEl);
 
     // ========================== refactor this later ===========================
@@ -131,21 +132,25 @@ const createFormContainer = () => {
     const option1 = document.createElement("option");
     option1.textContent = "Dog Parks";
     option1.value = "dog_park";
+    option1.id = "dog_park"
     selectEl.appendChild(option1);
 
     const option2 = document.createElement("option");
     option2.textContent = "Playground";
     option2.value = "playground";
+    option2.id = "playground"
     selectEl.appendChild(option2);
 
     const option3 = document.createElement("option");
     option3.textContent = "Hiking Trails";
     option3.value = "hiking_trails"
+    option3.id = "hiking_trails"
     selectEl.appendChild(option3);
 
     const option4 = document.createElement("option");
     option4.textContent = "Soccer Fields";
     option4.value = "soccer_fields"
+    option4.id = "soccer_fields"
     selectEl.appendChild(option4);
 
     const buttonEl = document.createElement("button");
@@ -172,6 +177,8 @@ console.log(createFormContainer());
 const concertSearchButton = document.querySelector("#concertsButton");
 concertSearchButton.addEventListener("click", handleAddConcertResultsToDom);
 
+
+
 const buildElementWithText = (elementType, elementTextContent) => {
     let htmlElement = document.createElement(elementType);
     htmlElement.textContent = elementTextContent;
@@ -187,18 +194,41 @@ const buildHTMLforConcertResults = (resultObject) => {
     return list;
 }
 
+
 const appendConcertResultsToDom = (resultArray) => {
     let resultsFragment = document.createDocumentFragment();
     resultArray.forEach(item => {
         resultsFragment.appendChild(buildHTMLforConcertResults(item));
     })
-
     while(resultsContainer.firstChild) {
         resultsContainer.removeChild(resultsContainer.firstChild);
     }
-
     resultsContainer.appendChild(resultsFragment);
 }
+
+
+
+const buildHTMLforParksResults = (resultObject) => {
+    list.appendChild(buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address))
+    return list;
+}
+
+const appendParksResultsToDom = (resultArray) => {
+    let resultsFragment = document.createDocumentFragment();
+    while(list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    resultArray.forEach(item => {
+        resultsFragment.appendChild(buildHTMLforParksResults(item));
+    })
+
+    resultsContainer.appendChild(resultsFragment);
+
+}
+
+const parksSearchButton = document.querySelector("#parksButton");
+parksSearchButton.addEventListener("click", handleAddParksResultsToDom);
 
 
 
