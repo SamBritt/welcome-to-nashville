@@ -153,7 +153,7 @@ const list = document.createElement('ol');
 const buildHTMLforConcertResults = (resultObject) => {
     
     list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
-    const 
+     
     
     return list;
 }
@@ -161,7 +161,7 @@ const buildHTMLforConcertResults = (resultObject) => {
 const appendResultsToDom = (resultArray) => {
     let resultsFragment = document.createDocumentFragment();
     resultArray.forEach(item => {
-        resultsFragment.appendChild(buildHTMLforResults(item));
+        resultsFragment.appendChild(buildHTMLforConcertResults(item));
     })
 
     while(resultsContainer.firstChild) {
