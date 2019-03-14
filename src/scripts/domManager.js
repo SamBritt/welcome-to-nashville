@@ -83,8 +83,8 @@ const createFormContainer = () => {
     }
 
     // ========================== Drop Box Area ===========================
-    const formEl = document.createElement("form");
-    formEl.id = "form";
+    const formEl = document.createElement("fieldset");
+    formEl.id = "feildset";
 
     // this will build the parks section
     const sectionEl = document.createElement("section");
@@ -142,7 +142,6 @@ console.log(createFormContainer());
 
 const concertSearchButton = document.querySelector("#concertsButton");
 concertSearchButton.addEventListener("click", handleAddResultsToDom);
-concertSearchButton.setAttribute("type", "button");
 
 const buildElementWithText = (elementType, elementTextContent) => {
     let htmlElement = document.createElement(elementType);
@@ -151,9 +150,10 @@ const buildElementWithText = (elementType, elementTextContent) => {
 };
 const list = document.createElement('ol');
 
-const buildHTMLforResults = (resultObject) => {
+const buildHTMLforConcertResults = (resultObject) => {
     
     list.appendChild(buildElementWithText("li", resultObject.name + " || " + resultObject.dates.start.localDate))
+    const 
     
     return list;
 }
