@@ -7,7 +7,6 @@ const handleAddConcertResultsToDom = () => {
     getCalls.getRestaurants(document.querySelector("#restaurants-input").value).then(parsedResponse => appendRestaurantResultsToDom(parsedResponse))
     //document.querySelector(“#form”).reset();
  }
-
     //document.querySelector("#form").reset();
 // }
 
@@ -18,12 +17,7 @@ const handleAddParksResultsToDom = () => {
 }
 
 const handleSaveButton = () => {
-    
-
-
-    
 }
-
 const handleAddMeetupsResultsToDom = () => {
     getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
 }
