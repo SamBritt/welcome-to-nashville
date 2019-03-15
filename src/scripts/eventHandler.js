@@ -16,7 +16,7 @@ const handleAddParksResultsToDom = () => {
     const selection = document.getElementById("selections");
     userSelection = selection.options[selection.selectedIndex].value
     getCalls.getParks(userSelection).then(parsedResponse => appendParksResultsToDom(parsedResponse))
-    
+
 }
 
 const handleAddMeetupsResultsToDom = () => {
@@ -40,7 +40,7 @@ let itineraryObject = {
 */
 
 const handleSaveButton = () => {
-  
+
     switch (true) {
         case (event.target.parentNode.classList.contains("parks")):
             itineraryObject.park = event.target.parentNode.firstChild.textContent;
@@ -58,7 +58,17 @@ const handleSaveButton = () => {
     while (itineraryDiv.firstChild) {
         itineraryDiv.removeChild(itineraryDiv.firstChild);
     }
-    putItinerary(itineraryObject);
-    
+    putItinerary(itineraryObject)
+      
+}
+
+// function to save itinerary and post to database
+const handleSaveItineraryButton = () => {
+
+    while (itineraryDiv.firstChild) {
+        itineraryDiv.removeChild(itineraryDiv.firstChild);
+    }
+    postItinerary(itineraryObject);
+
 
 }
