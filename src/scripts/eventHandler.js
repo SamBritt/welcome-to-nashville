@@ -5,10 +5,7 @@ const handleAddConcertResultsToDom = () => {
 
 const handleAddRestaurantResultsToDom = () => {
     getCalls.getRestaurants(document.querySelector("#restaurants-input").value).then(parsedResponse => appendRestaurantResultsToDom(parsedResponse))
-    //document.querySelector(“#form”).reset();
 }
-//document.querySelector("#form").reset();
-// }
 
 const handleAddParksResultsToDom = () => {
     const selection = document.getElementById("selections");
@@ -26,7 +23,7 @@ let itineraryObject = {
     concert: ""
 }
 const handleSaveButton = () => {
-  
+
     switch (true) {
         case (event.target.parentNode.classList.contains("parks")):
             itineraryObject.park = event.target.parentNode.firstChild.textContent;
@@ -45,6 +42,4 @@ const handleSaveButton = () => {
         itineraryDiv.removeChild(itineraryDiv.firstChild);
     }
     putItinerary(itineraryObject);
-    
-
 }
