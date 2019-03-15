@@ -6,7 +6,7 @@ body {
 #display-container {
     display: flex;
     flex-direction: column;
-    /* text-align: center; */
+    text-align: center;
 }
 
 h1 {
@@ -69,6 +69,11 @@ fieldset {
 fieldset section {
     display: flex;
     justify-content: space-between;
+}
+
+
+ol {
+    text-align: left;
 }
 
 /* #results-container li {
