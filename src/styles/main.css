@@ -2,8 +2,11 @@ body {
     background-color: lavender;
     font-family: 'Montserrat', sans-serif;
 }
+.nashImg{
+    max-width: 100%;
+}
 
-#display-container {
+#display-container{
     display: flex;
     flex-direction: column;
     /* text-align: center; */
