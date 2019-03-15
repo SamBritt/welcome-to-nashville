@@ -59,6 +59,17 @@ let buildMeetupsArray = (search) => {
     //map through that array, for each element in that array,
     //create an object, set the values to be name and time, return that result,
     //then pass the result into the buildResultList function.
+    // getCalls.getMeetups(search).then(response => {
+    //     let condensedArr = response.events.slice(0, 4);
+    //     let tempArr = condensedArr.map(e => {
+    //         let tempObj = {};
+    //         tempObj.name = e.name.text;
+    //         tempObj.date = e.start.local;
+    //         return tempObj;
+    //     })
+    //     console.log(tempArr);
+    //     buildResultList(tempArr);
+    // })
     getCalls.getMeetups(search).then(response => {
         let condensedArr = response.events.slice(0, 4);
         let tempArr = condensedArr.map(e => {
@@ -71,6 +82,7 @@ let buildMeetupsArray = (search) => {
         buildResultList(tempArr);
     })
 }
+
 
 
 // creates the form container 
@@ -181,10 +193,8 @@ const buildElementWithText = (elementType, elementTextContent, id, classAdd) => 
     return htmlElement;
 };
 
-
 list.id = "results";
 let i = 1;
-
 
 //These buildHTML functions will take each object that is passed to it and create the HTML structure for the results container. The result li's will all have unique id's. Each API will be assigned a unique class in order to be targetted easier. The event listener is added to each button that is created
 

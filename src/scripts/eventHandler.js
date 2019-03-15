@@ -20,9 +20,8 @@ const handleAddParksResultsToDom = () => {
 }
 
 const handleAddMeetupsResultsToDom = () => {
-    getCalls.getMeetups(document.querySelector("#meetups-input").value).then(parsedResponse => buildMeetupsArray(parsedResponse));
-
-    document.querySelector("#meetups-input").value = "";
+    let input = document.querySelector("#meetups-input").value;
+    buildMeetupsArray(input);
 }
 
 /*
