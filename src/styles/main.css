@@ -14,7 +14,7 @@ h1 {
 
 label {
     display: inline-flex;
-    min-width: 72px;
+    width: 90px;
 }
 
 button {
@@ -62,4 +62,9 @@ fieldset {
     flex-direction: column;
     width: 45vw;
     align-self: center
+}
+
+fieldset section {
+    display: flex;
+    justify-content: space-between;
 }
