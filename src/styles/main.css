@@ -9,7 +9,7 @@ body {
 #display-container{
     display: flex;
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 
 label {
     display: inline-flex;
-    min-width: 72px;
+    width: 90px;
 }
 
 button {
@@ -35,11 +35,12 @@ fieldset {
 }
 
 #input-container h2 {
-    padding: 5px; 
+    padding: 5px;
     margin-bottom: 0;
-    
+
 }
-#input-container{
+
+#input-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -67,3 +68,13 @@ fieldset {
     width: 45vw;
     align-self: center
 }
+
+fieldset section {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* #results-container li {
+    display: flex;
+    justify-content: space-between;
+} */

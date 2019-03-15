@@ -1,6 +1,9 @@
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
+const list = document.createElement('ol');
+const itineraryDiv = document.createElement("div")
+
 // Appending h1 to mainContainer
 const buildPageHeader = document.createElement("H1");
 buildPageHeader.textContent = "Welcome to Nashville";
@@ -24,7 +27,6 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
-
 
 const buildResultList = (arr) => {
 
@@ -57,6 +59,17 @@ let buildMeetupsArray = (search) => {
     //map through that array, for each element in that array,
     //create an object, set the values to be name and time, return that result,
     //then pass the result into the buildResultList function.
+    // getCalls.getMeetups(search).then(response => {
+    //     let condensedArr = response.events.slice(0, 4);
+    //     let tempArr = condensedArr.map(e => {
+    //         let tempObj = {};
+    //         tempObj.name = e.name.text;
+    //         tempObj.date = e.start.local;
+    //         return tempObj;
+    //     })
+    //     console.log(tempArr);
+    //     buildResultList(tempArr);
+    // })
     getCalls.getMeetups(search).then(response => {
         let condensedArr = response.events.slice(0, 4);
         let tempArr = condensedArr.map(e => {
@@ -69,6 +82,7 @@ let buildMeetupsArray = (search) => {
         buildResultList(tempArr);
     })
 }
+
 
 
 // creates the form container 
@@ -179,10 +193,8 @@ const buildElementWithText = (elementType, elementTextContent, id, classAdd) => 
     return htmlElement;
 };
 
-const list = document.createElement('ol');
 list.id = "results";
 let i = 1;
-
 
 //These buildHTML functions will take each object that is passed to it and create the HTML structure for the results container. The result li's will all have unique id's. Each API will be assigned a unique class in order to be targetted easier. The event listener is added to each button that is created
 
@@ -249,7 +261,6 @@ parksSearchButton.addEventListener("click", handleAddParksResultsToDom);
 
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
-const itineraryDiv = document.createElement("div")
 const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) => {
     //Create 4 <p> elements that are meant to display the saved items gathered from the results section. The parameters are meant to specify which items will go into which element. Each of these elements are appended to the document fragment itineraryFragment. Then the fragment is appended to itinerary container.
     const itineraryFragment = document.createDocumentFragment();
@@ -271,7 +282,7 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
 
     itineraryDiv.appendChild(itineraryFragment)
     itineraryContainer.appendChild(itineraryDiv);
-
+    buildItinerarySaveButton()
 }
 
 // Creating variable to store restaurant button and adding event listener
@@ -303,4 +314,10 @@ const appendRestaurantResultsToDom = resultArray => {
         resultsFragment.appendChild(buildHTMLforRestaurantResults(item));
     })
     resultsContainer.appendChild(resultsFragment);
+}
+const buildItinerarySaveButton = () => {
+    const itinerarySaveButton = document.createElement("button");
+    itinerarySaveButton.textContent = "Save Itinerary";
+    itinerarySaveButton.addEventListener("click", handleSaveItineraryButton);   
+    itineraryDiv.appendChild(itinerarySaveButton)
 }
