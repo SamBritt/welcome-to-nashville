@@ -75,5 +75,4 @@ const postItinerary = (newObject) => {
             }
         })
         .then(response => response.json())
-        .then(() => getItinerary())
 }

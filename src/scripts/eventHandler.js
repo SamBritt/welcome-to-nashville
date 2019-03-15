@@ -60,7 +60,7 @@ const handleSaveButton = () => {
         itineraryDiv.removeChild(itineraryDiv.firstChild);
     }
     putItinerary(itineraryObject)
-    
+      
 }
 
 // function to save itinerary and post to database
