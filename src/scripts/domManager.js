@@ -77,6 +77,7 @@ const createFormContainer = () => {
     // this component pretty much builds the form section dynamically
 
     const buildFormElements = (elemInputID, elemBtnId, elemPlaceholder, elemLabel) => {
+        // this function is going to be used by the three input tags and return that particular section 
         const sectionEl = document.createElement("section");
         formEl.appendChild(sectionEl); // this will append to the form section
 
@@ -114,7 +115,7 @@ const createFormContainer = () => {
     selectEl.id = "selections"
     sectionEl.appendChild(selectEl);
 
-    // ========================== refactor this later ===========================
+    // ========================== sections ===========================
     // ================================ options =================================
     const option1 = document.createElement("option");
     option1.textContent = "Dog Parks";
@@ -140,6 +141,8 @@ const createFormContainer = () => {
     option4.id = "soccer_fields"
     selectEl.appendChild(option4);
 
+
+    // this adds the search button to each input/dropdown sections
     const buttonEl = document.createElement("button");
     buttonEl.id = "parksButton";
     buttonEl.textContent = "Search";
@@ -206,16 +209,18 @@ const appendConcertResultsToDom = (resultArray) => {
 
 
 const buildHTMLforParksResults = (resultObject) => {
+    // this function will build the html and then is called within the appendParksResultsToDom
     let liElement = buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`, "parks")
     list.appendChild(liElement)
     i++;
-
+    // this will append the button 
     liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "parks"));
     // buildButtonsResults(liElement)
     return list;
 }
 
 const appendParksResultsToDom = (resultArray) => {
+    // appends the park results to the html
     let resultsFragment = document.createDocumentFragment();
     while (list.firstChild) {
         list.removeChild(list.firstChild);
