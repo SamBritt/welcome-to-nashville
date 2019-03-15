@@ -223,8 +223,6 @@ const buildHTMLforParksResults = (resultObject) => {
     liElement.appendChild(parkSaveButton)
     parkSaveButton.addEventListener("click", handleSaveButton);
     i++;
-    // this will append the button 
-    liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "parks"));
     // buildButtonsResults(liElement)
 
     return list;
