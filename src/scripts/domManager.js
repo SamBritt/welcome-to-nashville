@@ -187,23 +187,16 @@ let i = 1;
 //These buildHTML functions will take each object that is passed to it and create the HTML structure for the results container. The result li's will all have unique id's. Each API will be assigned a unique class in order to be targetted easier. The event listener is added to each button that is created
 
 const buildHTMLforConcertResults = (resultObject) => {
-    // let liElement = buildElementWithText("li", resultObject.name + " : " + resultObject.dates.start.localDate, `resultItem-${i}`, "concerts");
-    // list.appendChild(liElement)
-    // const concertSaveButton = document.createElement("button");
-    // concertSaveButton.classList.add = "concerts";
-    // concertSaveButton.textContent = "Save";
-    // liElement.appendChild(concertSaveButton)
-    // concertSaveButton.addEventListener("click", handleSaveButton);
-
-    // i++;
-
-    // return list;
-    let liElement = buildElementWithText("li", resultObject.park_name + ": " + resultObject.mapped_location_address, `resultItem-${i}`, "parks")
+    let liElement = buildElementWithText("li", resultObject.name + " : " + resultObject.dates.start.localDate, `resultItem-${i}`, "concerts");
     list.appendChild(liElement)
+    const concertSaveButton = document.createElement("button");
+    concertSaveButton.classList.add = "concerts";
+    concertSaveButton.textContent = "Save";
+    liElement.appendChild(concertSaveButton)
+    concertSaveButton.addEventListener("click", handleSaveButton);
+
     i++;
 
-    liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "parks"));
-    // buildButtonsResults(liElement)
     return list;
 }
 // The append functions will create a document fragment. Then we will check if the results container has existing li's inside. If so, we will remove them with the while loop below. Then we use a for each loop to call the buildHTML functions for each object. Each will be appended to the fragment. Then the fragment is appended to the DOM.
@@ -230,8 +223,6 @@ const buildHTMLforParksResults = (resultObject) => {
     liElement.appendChild(parkSaveButton)
     parkSaveButton.addEventListener("click", handleSaveButton);
     i++;
-    // this will append the button 
-    liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "parks"));
     // buildButtonsResults(liElement)
 
     return list;
