@@ -17,7 +17,7 @@ const buildSectionHTML = (sectionID, titleText) => {
 };
 
 // Appending input-container to mainContainer
-const inputContainer = mainContainer.appendChild(buildSectionHTML("input-container", "Search for stuff to do today"));
+const inputContainer = mainContainer.appendChild(buildSectionHTML("input-container", "Search for stuff to do"));
 
 // Appending results-container to mainContainer
 const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-container", "Results"));
