@@ -7,32 +7,44 @@ const itineraryDiv = document.createElement("div")
 const buildNavHTML = () => {
     const navBarFragment = document.createDocumentFragment();
     const navBarFieldset = document.createElement("fieldset");
-    const navBarInputBox = document.createElement("input");
-    navBarInputBox.type = "text";
-    navBarInputBox.id = "navBar-input";
-    navBarFieldset.appendChild(navBarInputBox);
-    const navBarSearchButton = document.createElement("button");
-    navBarSearchButton.type = "button";
-    navBarSearchButton.id = "navBar-searchButton";
-    navBarFieldset.appendChild(navBarSearchButton);
+    
+    const firstLabel = document.createElement("label");
+    firstLabel.setAttribute("for", "hide-input-form");
+    firstLabel.textContent = "Hide Input Form"
     const navBarCheckBoxOne = document.createElement("input");
     navBarCheckBoxOne.type = "checkbox";
-    navBarCheckBoxOne.value = "Hide Input Form";
+    navBarCheckBoxOne.name = "hide-input-form";
+    navBarFieldset.appendChild(firstLabel);
     navBarFieldset.appendChild(navBarCheckBoxOne);
     const navBarCheckBoxTwo = document.createElement("input");
     navBarCheckBoxTwo.type = "checkbox";
-    navBarCheckBoxTwo.value = "Hide Results";
+    navBarCheckBoxTwo.name = "hide-results";
     navBarFieldset.appendChild(navBarCheckBoxTwo);
     const navBarCheckBoxThree = document.createElement("input");
     navBarCheckBoxThree.type = "checkbox";
-    navBarCheckBoxThree.value = "Hide My Itinerary";
+    navBarCheckBoxThree.value = "hide-my-itinerary";
     navBarFieldset.appendChild(navBarCheckBoxThree);
     const navBarCheckBoxFour = document.createElement("input");
     navBarCheckBoxFour.type = "checkbox";
-    navBarCheckBoxFour.value = "Show All Saved Itineraries";
+    navBarCheckBoxFour.value = "show-all-saved-itineraries";
     navBarFieldset.appendChild(navBarCheckBoxFour);
+    const navBarInputBox = document.createElement("input");
+    navBarInputBox.type = "text";
+    navBarInputBox.id = "navBar-input";
+    navBarInputBox.placeholder = "Search By Keyword";
+    navBarFieldset.appendChild(navBarInputBox);
+    const navBarSearchButton = document.createElement("button");
+    navBarSearchButton.textContent = "Search";
+    navBarSearchButton.type = "button";
+    navBarSearchButton.id = "navBar-searchButton";
+    navBarFieldset.appendChild(navBarSearchButton);
     navBarFragment.appendChild(navBarFieldset);
+
+    return navBarFragment;
 }
+
+document.querySelector("#nashHeader").appendChild(buildNavHTML());
+
 // Appending h1 to mainContainer
 const buildPageHeader = document.createElement("H1");
 buildPageHeader.textContent = "Welcome to Nashville";
