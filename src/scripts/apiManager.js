@@ -43,7 +43,7 @@ const getItinerary = () => {
         });
 }
 
-// put new itinerary information into database.json and return 
+// put new itinerary information into database.json and then get database 
 const putItinerary = (newObject) => {
     fetch("http://localhost:8088/itinerary/1", {
       method: "PUT",

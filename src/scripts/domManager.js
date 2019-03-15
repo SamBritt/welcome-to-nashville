@@ -27,8 +27,7 @@ const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary
 
 
 const buildResultList = (arr) => {
-                
-    
+
     //for each item in an array, for each element of that item (an object in this case),
     //create an 'li' element &
     //set the text content to be the value of that objects key, then
@@ -43,7 +42,6 @@ const buildResultList = (arr) => {
             saveButton.textContent = 'Save';
             resultElement.appendChild(saveButton);
             list.appendChild(resultElement);
-
         }
     })
 
@@ -168,7 +166,6 @@ const meetupsSearchButton = document.querySelector("#meetupsButton");
 meetupsSearchButton.addEventListener("click", handleAddMeetupsResultsToDom);
 
 
-
 const buildElementWithText = (elementType, elementTextContent, id, classAdd) => {
     let htmlElement = document.createElement(elementType);
     htmlElement.textContent = elementTextContent;
@@ -191,7 +188,7 @@ const buildHTMLforConcertResults = (resultObject) => {
     liElement.appendChild(concertSaveButton)
     concertSaveButton.addEventListener("click", handleSaveButton);
     // liElement.appendChild(buildElementWithText("button", "Save", `resultItem-${i}`, "concerts"));
-    
+
     i++;
 
     return list;
@@ -241,13 +238,12 @@ const parksSearchButton = document.querySelector("#parksButton");
 parksSearchButton.addEventListener("click", handleAddParksResultsToDom);
 
 
-
 // Function buildItineraryList serves the purpose of creating the HTML elements that will ultimately be a list of the items the user has selected to be on their itinerary.
 
 const itineraryDiv = document.createElement("div")
 const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) => {
     //Create 4 <p> elements that are meant to display the saved items gathered from the results section. The parameters are meant to specify which items will go into which element. Each of these elements are appended to the document fragment itineraryFragment. Then the fragment is appended to itinerary container.
-        const itineraryFragment = document.createDocumentFragment();
+    const itineraryFragment = document.createDocumentFragment();
     const parkToAdd = document.createElement("p");
     parkToAdd.textContent = `Park: ${parkSaved}`;
     itineraryFragment.appendChild(parkToAdd);
@@ -269,12 +265,13 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
 
 }
 
+// Creating variable to store restaurant button and adding event listener
 const restaurantSearchButton = document.querySelector("#restaurantsButton");
 restaurantSearchButton.addEventListener("click", handleAddRestaurantResultsToDom);
 
-
+// Function to input restaurant fetch results and save button
 const buildHTMLforRestaurantResults = (resultObject) => {
-    let liElement = buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`, "restaurants")
+    let liElement = buildElementWithText("li", resultObject.restaurant.name + ": " + resultObject.restaurant.location.address, `resultItem-${i}`, "restaurants")
     list.appendChild(liElement)
     const restaurantSaveButton = document.createElement("button");
     restaurantSaveButton.classList.add = "parks";
@@ -285,10 +282,6 @@ const buildHTMLforRestaurantResults = (resultObject) => {
 
     // buildButtonsResults(liElement)
     return list;
-
-    // list.appendChild(buildElementWithText("li", resultObject.restaurant.name + " || " + resultObject.restaurant.location.address, `resultItem-${i}`, "restaurants"))
-    // i++;
-    // return list;
 }
 
 // Function to append restaurant results to DOM which is attached to event handler
@@ -297,7 +290,6 @@ const appendRestaurantResultsToDom = resultArray => {
     while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
-
     resultArray.forEach(item => {
         resultsFragment.appendChild(buildHTMLforRestaurantResults(item));
     })
