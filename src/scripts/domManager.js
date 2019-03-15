@@ -1,6 +1,7 @@
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
-
+const list = document.createElement('ol');
+list.id = "results";
 // Appending h1 to mainContainer
 const buildPageHeader = document.createElement("H1");
 buildPageHeader.textContent = "Welcome to Nashville";
@@ -57,6 +58,17 @@ let buildMeetupsArray = (search) => {
     //map through that array, for each element in that array,
     //create an object, set the values to be name and time, return that result,
     //then pass the result into the buildResultList function.
+    // getCalls.getMeetups(search).then(response => {
+    //     let condensedArr = response.events.slice(0, 4);
+    //     let tempArr = condensedArr.map(e => {
+    //         let tempObj = {};
+    //         tempObj.name = e.name.text;
+    //         tempObj.date = e.start.local;
+    //         return tempObj;
+    //     })
+    //     console.log(tempArr);
+    //     buildResultList(tempArr);
+    // })
     getCalls.getMeetups(search).then(response => {
         let condensedArr = response.events.slice(0, 4);
         let tempArr = condensedArr.map(e => {
@@ -69,6 +81,7 @@ let buildMeetupsArray = (search) => {
         buildResultList(tempArr);
     })
 }
+
 
 
 // creates the form container 
@@ -179,8 +192,7 @@ const buildElementWithText = (elementType, elementTextContent, id, classAdd) => 
     return htmlElement;
 };
 
-const list = document.createElement('ol');
-list.id = "results";
+
 let i = 1;
 
 
