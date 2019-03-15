@@ -1,7 +1,7 @@
 {
   "itinerary": [
     {
-      "park": "Edwin Warner Park: 50 Vaughn Rd",
+      "park": "Shelby Park: Shelby Ave at South 20th St",
       "restaurant": "",
       "meetup": "",
       "concert": "",
@@ -48,6 +48,20 @@
       "meetup": "",
       "concert": "",
       "id": 7
+    },
+    {
+      "park": "Shelby Park: Shelby Ave at South 20th St",
+      "restaurant": "",
+      "meetup": "",
+      "concert": "",
+      "id": 8
+    },
+    {
+      "park": "Shelby Park: Shelby Ave at South 20th St",
+      "restaurant": "",
+      "meetup": "",
+      "concert": "",
+      "id": 9
     }
   ]
 }

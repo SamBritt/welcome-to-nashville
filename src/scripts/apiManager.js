@@ -33,24 +33,13 @@ const getCalls = {
 
 // fetch itinerary from database.json
 const getItinerary = () => {
-return fetch("http://localhost:8088/itinerary/1")
-    .then(r => r.json())
-    .then(parsedResults => {
-        buildItinerary(parsedResults.park, parsedResults.restaurant, parsedResults.meetup, parsedResults.concert)
-    });
+    return fetch("http://localhost:8088/itinerary/1")
+        .then(r => r.json())
+        .then(parsedResults => {
+            buildItinerary(parsedResults.park, parsedResults.restaurant, parsedResults.meetup, parsedResults.concert)
+        });
 
 };
-
-// const getItinerary = () => {
-//     return fetch("http://localhost:8088/itinerary/1")
-//         .then(r => r.json())
-//         .then(parsedResults => {
-//             parsedResults.forEach(item => {
-//                 buildItinerary(item.park, item.restaurant, item.meetup, item.concert)
-//             });
-
-//         });
-// }
 
 // put new itinerary information into database.json and then get database 
 const putItinerary = (newObject) => {
@@ -75,4 +64,15 @@ const postItinerary = (newObject) => {
             }
         })
         .then(response => response.json())
+}
+
+// fetch all itineraries from database.json
+const getAllItineraries = () => {
+    return fetch("http://localhost:8088/itinerary")
+        .then(r => r.json())
+        .then(parsedResults => {
+            parsedResults.forEach(item => {
+                buildSavedItinerary(item.park, item.restaurant, item.meetup, item.concert)
+            });
+        });
 }
