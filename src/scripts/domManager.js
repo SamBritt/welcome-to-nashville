@@ -72,6 +72,7 @@ let buildMeetupsArray = (search) => {
 }
 
 
+// creates the form container 
 const createFormContainer = () => {
     // this component pretty much builds the form section dynamically
 
@@ -114,7 +115,7 @@ const createFormContainer = () => {
     sectionEl.appendChild(selectEl);
 
     // ========================== refactor this later ===========================
-    // ====================== options ===================
+    // ================================ options =================================
     const option1 = document.createElement("option");
     option1.textContent = "Dog Parks";
     option1.value = "dog_park";
@@ -157,6 +158,7 @@ const createFormContainer = () => {
     return formEl;
 }
 
+// append the form to the input container
 inputContainer.appendChild(createFormContainer());
 console.log(createFormContainer());
 
