@@ -2,7 +2,8 @@ body {
     background-color: lavender;
     font-family: 'Montserrat', sans-serif;
 }
-#display-container{
+
+#display-container {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -31,11 +32,12 @@ fieldset {
 }
 
 #input-container h2 {
-    padding: 5px; 
+    padding: 5px;
     margin-bottom: 0;
-    
+
 }
-#input-container{
+
+#input-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -68,3 +70,8 @@ fieldset section {
     display: flex;
     justify-content: space-between;
 }
+
+/* #results-container li {
+    display: flex;
+    justify-content: space-between;
+} */

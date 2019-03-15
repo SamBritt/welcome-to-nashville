@@ -1,6 +1,8 @@
 // buildResultList(getCalls.getMeetups());
 const mainContainer = document.getElementById("display-container");
 
+const list = document.createElement('ol');
+
 // Appending h1 to mainContainer
 const buildPageHeader = document.createElement("H1");
 buildPageHeader.textContent = "Welcome to Nashville";
@@ -179,7 +181,7 @@ const buildElementWithText = (elementType, elementTextContent, id, classAdd) => 
     return htmlElement;
 };
 
-const list = document.createElement('ol');
+
 list.id = "results";
 let i = 1;
 
@@ -306,3 +308,7 @@ const appendRestaurantResultsToDom = resultArray => {
     })
     resultsContainer.appendChild(resultsFragment);
 }
+
+const itinerarySaveButton = document.createElement("button");
+itinerarySaveButton.textContent = "Save Itinerary";
+itinerarySaveButton.addEventListener("click", handleSaveItineraryButton);
