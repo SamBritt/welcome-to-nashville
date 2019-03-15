@@ -28,6 +28,9 @@ const resultsContainer = mainContainer.appendChild(buildSectionHTML("results-con
 // Appending itinerary-container to mainContainer
 const itineraryContainer = mainContainer.appendChild(buildSectionHTML("itinerary-container", "My itinerary"));
 
+// 
+const savedItinerariesContainer = mainContainer.appendChild(buildSectionHTML("saved-itineraries-container", "Saved Itineraries"));
+
 const buildResultList = (arr) => {
 
     //for each item in an array, for each element of that item (an object in this case),
@@ -283,6 +286,33 @@ const buildItinerary = (parkSaved, restaurantSaved, meetupSaved, concertSaved) =
     itineraryDiv.appendChild(itineraryFragment)
     itineraryContainer.appendChild(itineraryDiv);
     buildItinerarySaveButton()
+}
+
+// Function to display all results to the DOM in saved itineraries container
+const buildSavedItinerary = (park, restaurant, meetup, concert) => {
+  
+    const itineraryFragment = document.createDocumentFragment();
+    const parkToAdd = document.createElement("p");
+    parkToAdd.textContent = `Park: ${park}`;
+    itineraryFragment.appendChild(parkToAdd);
+
+    const restaurantToAdd = document.createElement("p");
+    restaurantToAdd.textContent = `Restaurant: ${restaurant}`;
+    itineraryFragment.appendChild(restaurantToAdd);
+
+    const meetupToAdd = document.createElement("p");
+    meetupToAdd.textContent = `Meetup: ${meetup}`;
+    itineraryFragment.appendChild(meetupToAdd);
+
+    const concertToAdd = document.createElement("p");
+    concertToAdd.textContent = `Concert: ${concert}`;
+    itineraryFragment.appendChild(concertToAdd);
+
+    itineraryDiv.appendChild(itineraryFragment);
+    const lineBreak = document.createElement("hr");
+    itineraryDiv.appendChild(lineBreak);
+
+    savedItinerariesContainer.appendChild(itineraryDiv);
 }
 
 // Creating variable to store restaurant button and adding event listener

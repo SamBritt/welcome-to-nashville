@@ -47,7 +47,7 @@ fieldset {
 
 #results-container {
     border: 1px solid;
-    margin: 5px 0 5px 0;
+    margin: 10px 0 5px 0;
     padding: 5px;
     display: flex;
     justify-content: center;
@@ -58,6 +58,18 @@ fieldset {
 
 #itinerary-container {
     border: 1px solid;
+    margin: 5px 0 5px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 45vw;
+    align-self: center
+}
+
+#saved-itineraries-container {
+    border: 1px solid;
+    margin: 5px 0 5px 0;
     padding: 5px;
     display: flex;
     justify-content: center;
