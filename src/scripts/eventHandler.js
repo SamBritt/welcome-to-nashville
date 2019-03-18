@@ -77,3 +77,11 @@ const handleSaveItineraryButton = () => {
 // const handleSaveAllItineraries = () => {
     
 // }
+
+// function to handle the checkbox events 
+const handleCheckboxes = () => {
+    document.getElementById("input-container").style.display = "none";
+}
+
+// const hideForm = document.getElementById("parentCheckbox");
+// console.log(hideForm)

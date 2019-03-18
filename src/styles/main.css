@@ -12,6 +12,11 @@ body {
     text-align: center;
 }
 
+#parentCheckbox {
+    display: flex;
+    justify-content: space-around;
+}
+
 h1 {
     font-size: 3em;
 }
