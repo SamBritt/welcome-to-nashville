@@ -367,13 +367,13 @@ const buildNavBarHtml = () => {
     nav_Section.appendChild(chkbx1Div)
 
     const chkbox1 = document.createElement("input");
-    chkbox1.id = "show_form";
+    chkbox1.id = "hide_form";
     chkbox1.type = "checkbox"
-    chkbox1.name = "show_form";
+    chkbox1.name = "hide_form";
 
     const checkbox1Label = document.createElement("label");
-    checkbox1Label.for = "show_form";
-    checkbox1Label.textContent = "Itinerary Form"
+    checkbox1Label.for = "hide_form";
+    checkbox1Label.textContent = "Hide Itinerary Form"
 
     // append the checkbox and it's label
     chkbx1Div.appendChild(chkbox1);
@@ -384,13 +384,13 @@ const buildNavBarHtml = () => {
     nav_Section.appendChild(checkbox2Div);
 
     const checkbox2 = document.createElement("input");
-    checkbox2.id = "show_results";
+    checkbox2.id = "hide_results";
     checkbox2.type = "checkbox"
-    checkbox2.name = "show_results";    
+    checkbox2.name = "hide_results";    
 
     const checkbox2Label = document.createElement("label");
-    checkbox2Label.for = "show_results";
-    checkbox2Label.textContent = "My Results";
+    checkbox2Label.for = "hide_results";
+    checkbox2Label.textContent = "Hide Results";
 
     // append the checkbox and it's label
     checkbox2Div.appendChild(checkbox2);
@@ -401,13 +401,13 @@ const buildNavBarHtml = () => {
     nav_Section.appendChild(checkbox3Div);
 
     const checkbox3 = document.createElement("input");
-    checkbox3.id = "show_itinerary";
+    checkbox3.id = "hide_itinerary";
     checkbox3.type = "checkbox"
-    checkbox3.name = "show_itinerary";    
+    checkbox3.name = "hide_itinerary";    
 
     const checkbox3Label = document.createElement("label");
-    checkbox3Label.for = "show_itinerary";
-    checkbox3Label.textContent = "My Itinerary";
+    checkbox3Label.for = "hide_itinerary";
+    checkbox3Label.textContent = "Hide Itinerary";
 
     // append the checkbox and it's label
     checkbox3Div.appendChild(checkbox3);
@@ -447,4 +447,4 @@ const buildNavBarHtml = () => {
 buildNavBarHtml()
 const hideForm = document.getElementById("parentCheckbox");
 console.log(hideForm)
-hideForm.addEventListener("change", handleCheckboxes);
+hideForm.addEventListener("click", handleCheckboxes);

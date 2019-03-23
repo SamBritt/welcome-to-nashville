@@ -1,7 +1,7 @@
 {
   "itinerary": [
     {
-      "park": "Shelby Park: Shelby Ave at South 20th St",
+      "park": "E. N. Peeler Park: 2271 Neelys Bend Rd",
       "restaurant": "",
       "meetup": "",
       "concert": "",
@@ -62,6 +62,13 @@
       "meetup": "",
       "concert": "",
       "id": 9
+    },
+    {
+      "park": "East Park: 700 Woodland St",
+      "restaurant": "Thai Phooket: 207 Woodland, Nashville 37213",
+      "meetup": "dance for illness Save2019-03-23T12:00:00 ",
+      "concert": "Michael Bublé : 2019-07-19",
+      "id": 10
     }
   ]
 }

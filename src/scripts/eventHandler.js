@@ -80,8 +80,38 @@ const handleSaveItineraryButton = () => {
 
 // function to handle the checkbox events 
 const handleCheckboxes = () => {
-    document.getElementById("input-container").style.display = "none";
+    switch(true) {
+        case(event.target.id === "hide_form"): 
+            if(event.target.checked === true){
+                document.getElementById("input-container").style.display = "none";
+            }else{
+                document.getElementById("input-container").style.display = "block";
+            }
+            break;
+        case(event.target.id === "hide_results"): 
+            if(event.target.checked === true){
+                document.getElementById("results-container").style.display = "none";
+            }else{
+                document.getElementById("results-container").style.display = "block";
+            }
+                break;
+        case(event.target.id === "hide_itinerary"): 
+            if(event.target.checked === true){
+                document.getElementById("itinerary-container").style.display = "none";
+            }else{
+                document.getElementById("itinerary-container").style.display = "block";
+            }
+                break;
+        case(event.target.id === "saved_itinerary"): 
+            if(event.target.checked === true){
+                document.getElementById("saved-itineraries-container").style.display = "none";
+            }else{
+                document.getElementById("saved-itineraries-container").style.display = "block";
+            }
+                break;
+        case(event.target.id === "search_item"): 
+            console.log("searching this: ", event.target.value);
+            break;
+    }
 }
 
-// const hideForm = document.getElementById("parentCheckbox");
-// console.log(hideForm)
