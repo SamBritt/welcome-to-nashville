@@ -351,3 +351,100 @@ const buildItinerarySaveButton = () => {
     itinerarySaveButton.addEventListener("click", handleSaveItineraryButton);   
     itineraryDiv.appendChild(itinerarySaveButton)
 }
+
+
+const navHeader = document.getElementById("navHeader");
+console.log(navHeader)
+const buildNavBarHtml = () => {
+    // this component will assist in building up the html for that nav bar that will consist of checkboxes and search bar
+
+    const nav_Section = document.createElement("section");
+    nav_Section.id = "parentCheckbox";
+    navHeader.appendChild(nav_Section); // appends the section that will hold divs which will hold the checkboxes + search text input to the nash header 
+
+    // ================= div 1 & checkbox 1 =========================
+    const chkbx1Div = document.createElement("div");
+    nav_Section.appendChild(chkbx1Div)
+
+    const chkbox1 = document.createElement("input");
+    chkbox1.id = "hide_form";
+    chkbox1.type = "checkbox"
+    chkbox1.name = "hide_form";
+
+    const checkbox1Label = document.createElement("label");
+    checkbox1Label.for = "hide_form";
+    checkbox1Label.textContent = "Hide Itinerary Form"
+
+    // append the checkbox and it's label
+    chkbx1Div.appendChild(chkbox1);
+    chkbx1Div.appendChild(checkbox1Label);
+    
+// ================= div 2 & checkbox 2 =========================
+    const checkbox2Div = document.createElement("div");
+    nav_Section.appendChild(checkbox2Div);
+
+    const checkbox2 = document.createElement("input");
+    checkbox2.id = "hide_results";
+    checkbox2.type = "checkbox"
+    checkbox2.name = "hide_results";    
+
+    const checkbox2Label = document.createElement("label");
+    checkbox2Label.for = "hide_results";
+    checkbox2Label.textContent = "Hide Results";
+
+    // append the checkbox and it's label
+    checkbox2Div.appendChild(checkbox2);
+    checkbox2Div.appendChild(checkbox2Label)
+
+// ================= div 3 & checkbox 3 =========================
+    const checkbox3Div = document.createElement("div");
+    nav_Section.appendChild(checkbox3Div);
+
+    const checkbox3 = document.createElement("input");
+    checkbox3.id = "hide_itinerary";
+    checkbox3.type = "checkbox"
+    checkbox3.name = "hide_itinerary";    
+
+    const checkbox3Label = document.createElement("label");
+    checkbox3Label.for = "hide_itinerary";
+    checkbox3Label.textContent = "Hide Itinerary";
+
+    // append the checkbox and it's label
+    checkbox3Div.appendChild(checkbox3);
+    checkbox3Div.appendChild(checkbox3Label); 
+
+    // ================= div 4 & checkbox 4 =========================
+    const checkbox4Div = document.createElement("div");
+    nav_Section.appendChild(checkbox4Div);
+
+    const checkbox4 = document.createElement("input");
+    checkbox4.id = "saved_itinerary";
+    checkbox4.type = "checkbox";
+    checkbox4.name = "saved_itinerary";
+
+    const checkbox4Label = document.createElement("label");
+    checkbox4Label.for = "saved_itinerary";
+    checkbox4Label.textContent = "Saved Itinerary";
+
+    // append the checkbox and it's label
+    checkbox4Div.appendChild(checkbox4);
+    checkbox4Div.appendChild(checkbox4Label);
+
+
+    // ===================== div 5 & search text input field ===============
+    const searchDiv = document.createElement("div");
+    nav_Section.appendChild(searchDiv);
+
+    const searchField = document.createElement("input");
+    searchField.id = "search_item";
+    searchField.type = "text";
+    searchField.name = "search_item";
+    searchField.placeholder = "Search itinearies";
+
+    searchDiv.appendChild(searchField);
+}
+
+buildNavBarHtml()
+const hideForm = document.getElementById("parentCheckbox");
+console.log(hideForm)
+hideForm.addEventListener("click", handleCheckboxes);
